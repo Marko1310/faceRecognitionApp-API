@@ -1,6 +1,7 @@
 const express = require("express");
 const port = 8000;
 const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt-nodejs");
 
 const app = express();
 app.use(bodyParser.json());
@@ -24,6 +25,13 @@ const database = {
       joined: new Date(),
     },
   ],
+  login: [
+    {
+      id: "987",
+      hash: "",
+      email: "john@gmail.com",
+    },
+  ],
 };
 
 app.get("/", (req, res) => {
@@ -31,18 +39,36 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signin", (req, res) => {
-  if (
-    req.body.email === database.users[0].email &&
-    req.body.password === database.users[0].password
-  ) {
-    res.json("success");
-  } else {
-    res.status(400).json("error login in");
-  }
+  bcrypt.compare(
+    "apples",
+    "$2a$10$mwVYtAA0tK/K7x3olk2B/.RxSmm/5eApd1QA.PuxTm9CI1rdIvxZO",
+    function (err, res) {
+      console.log("1.guess", res);
+    }
+  );
+  bcrypt.compare(
+    "veggies",
+    "$2a$10$mwVYtAA0tK/K7x3olk2B/.RxSmm/5eApd1QA.PuxTm9CI1rdIvxZO",
+    function (err, res) {
+      console.log("2.guess", res);
+    }
+  );
+
+  //   if (
+  //     req.body.email === database.users[0].email &&
+  //     req.body.password === database.users[0].password
+  //   ) {
+  //     res.json("success");
+  //   } else {
+  //     res.status(400).json("error login in");
+  //   }
 });
 
 app.post("/register", (req, res) => {
   const { email, name, password } = req.body;
+  bcrypt.hash(password, null, null, function (err, hash) {
+    console.log(hash);
+  });
   database.users.push({
     id: "125",
     name: name,
@@ -79,6 +105,8 @@ app.put("/image", (req, res) => {
     }
   });
 });
+
+// Load hash from your password DB.
 
 app.listen(port, () => {
   console.log(`app is running on ${port}`);

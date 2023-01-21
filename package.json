@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Marko1310/faceRecognitionApp-API#readme",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "1.20.1",
     "dotenv": "^16.0.3",
     "eslint": "^8.32.0",
