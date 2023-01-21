@@ -1,5 +1,5 @@
 {
-  "name": "natoursapi",
+  "name": "facerecognitionapp-api",
   "version": "1.0.0",
   "description": "Learning node, express mongodb",
   "main": "app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Marko1310/NatoursAPI.git"
+    "url": "git+https://github.com/Marko1310/faceRecognitionApp-API.git"
   },
   "author": "Marko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Marko1310/NatoursAPI/issues"
+    "url": "https://github.com/Marko1310/faceRecognitionApp-API/issues"
   },
-  "homepage": "https://github.com/Marko1310/NatoursAPI#readme",
+  "homepage": "https://github.com/Marko1310/faceRecognitionApp-API#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
     "eslint": "^8.32.0",
