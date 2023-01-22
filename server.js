@@ -2,9 +2,9 @@ const express = require("express");
 const port = 8000;
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
+const cors = require("cors");
 
 const app = express();
-app.use(bodyParser.json());
 
 const database = {
   users: [
@@ -34,6 +34,9 @@ const database = {
   ],
 };
 
+app.use(bodyParser.json());
+app.use(cors());
+
 app.get("/", (req, res) => {
   res.send(database.users);
 });
@@ -54,14 +57,14 @@ app.post("/signin", (req, res) => {
     }
   );
 
-  //   if (
-  //     req.body.email === database.users[0].email &&
-  //     req.body.password === database.users[0].password
-  //   ) {
-  //     res.json("success");
-  //   } else {
-  //     res.status(400).json("error login in");
-  //   }
+  if (
+    req.body.email === database.users[0].email &&
+    req.body.password === database.users[0].password
+  ) {
+    res.json("success");
+  } else {
+    res.status(400).json("error login in");
+  }
 });
 
 app.post("/register", (req, res) => {
