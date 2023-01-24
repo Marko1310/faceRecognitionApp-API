@@ -4,14 +4,12 @@ const handleSignin = function (req, res, db, bcrypt) {
     .where("email", "=", req.body.email)
     .then((data) => {
       const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
-      console.log(isValid);
       if (isValid) {
         return db
           .select("*")
           .from("users")
           .where("email", "=", req.body.email)
           .then((user) => {
-            console.log(user);
             res.json(user[0]);
           })
           .catch(() => res.status(400).json("unable to get user"));
