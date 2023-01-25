@@ -1,5 +1,5 @@
 const express = require("express");
-const port = 8000;
+const PORT = process.env.PORT || 8000;
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
@@ -20,12 +20,6 @@ const db = knex({
     database: "smart-brain",
   },
 });
-
-db.select("*")
-  .from("users")
-  .then((data) => {
-    console.log(data);
-  });
 
 const app = express();
 
@@ -54,6 +48,6 @@ app.put("/image", (req, res) => {
 
 // Load hash from your password DB.
 
-app.listen(port, () => {
-  console.log(`app is running on ${port}`);
+app.listen(PORT, () => {
+  console.log(`app is running on ${PORT}`);
 });
